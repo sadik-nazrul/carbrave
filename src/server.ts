@@ -6,7 +6,7 @@ async function main() {
   await mongoose.connect(config.database_url as string);
 
   app.listen(config.port, () => {
-    console.log(`Boilerplate is listening on port ${config.port}`);
+    console.log(`CarBrave is listening on port ${config.port}`);
   });
 }
 
