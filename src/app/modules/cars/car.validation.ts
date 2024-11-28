@@ -41,6 +41,7 @@ const carValidationSchema = z.object({
     .min(1, 'Quantity is required'),
   inStock: z
     .boolean()
+    .default(true)
     .refine((value) => value !== undefined, 'isStoke is required'),
 });
 export default carValidationSchema;
