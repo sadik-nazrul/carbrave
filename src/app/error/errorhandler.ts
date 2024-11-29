@@ -13,7 +13,7 @@ export const handleError = (err: any, res: Response) => {
 
     return res.status(400).json({
       message: 'Validation failed',
-      success: false,
+      status: false,
       error: {
         name: 'ValidationError',
         errors: errorMessage,
@@ -25,7 +25,7 @@ export const handleError = (err: any, res: Response) => {
   if (err.name === 'DatabaseError') {
     return res.status(500).json({
       message: 'Something went wrong',
-      success: false,
+      status: false,
       error: {
         name: 'DatabaseError',
         message: 'Failed to insert car into DB',
@@ -37,7 +37,7 @@ export const handleError = (err: any, res: Response) => {
   // Handle other errors (general catch-all)
   return res.status(500).json({
     message: 'Something went wrong',
-    success: false,
+    status: false,
     error: {
       name: err.name || 'UnknownError',
       message: err.message || 'An unknown error occurred',

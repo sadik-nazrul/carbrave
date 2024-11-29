@@ -19,4 +19,9 @@ const carSchema = new Schema<Car>(
   { timestamps: true },
 );
 
+// // pre hook
+// carSchema.pre('find', function (this, next) {
+//   this.find({ inStock: { $ne: false } });
+//   next();
+// });
 export const CarModel = model<Car>('Car', carSchema);
