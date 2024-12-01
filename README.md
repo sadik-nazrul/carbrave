@@ -74,7 +74,7 @@ src/
    yarn run start:dev
    ```
 
-## Endpoint
+## Endpoints
 
 1. Create Car:
 
