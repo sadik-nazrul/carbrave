@@ -62,8 +62,8 @@ src/
 3. Create a .env file in the root directory and add the following:
 
    ```
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/carbrave
+   PORT=5000(your prepaired port)
+   DATABASE_URL=mongodb://localhost:27017/carbrave
    ```
 
 4. Start the server:
