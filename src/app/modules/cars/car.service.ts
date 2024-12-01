@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Car } from './car.interface';
 import { CarModel } from './car.model';
 
@@ -8,8 +9,18 @@ const createCarIntoDB = async (car: Car) => {
 };
 
 // Get all Cars
-const getCarsToDB = async () => {
-  const result = await CarModel.find();
+const getCarsToDB = async (searchTerm: string) => {
+  const query: any = {};
+
+  if (searchTerm) {
+    query.$or = [
+      { brand: { $regex: searchTerm, $options: 'i' } },
+      { model: { $regex: searchTerm, $options: 'i' } },
+      { category: { $regex: searchTerm, $options: 'i' } },
+    ];
+  }
+
+  const result = await CarModel.find(query);
   return result;
 };
 
