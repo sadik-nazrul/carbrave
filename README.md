@@ -73,3 +73,47 @@ src/
    or
    yarn run start:dev
    ```
+
+## Endpoint
+
+1. Create Car:
+
+   ```
+   http://localhost:5000/api/cars
+   ```
+
+2. Get All cars:
+
+   ```
+   http://localhost:5000/api/cars
+   ```
+
+3. Get Single car:
+
+   ```
+   http://localhost:5000/api/cars/:carId
+   ```
+
+4. Update car:
+
+   ```
+   http://localhost:5000/api/cars/:carId
+   ```
+
+5. Delete car:
+
+   ```
+   http://localhost:5000/api/cars/:carId
+   ```
+
+6. Order car:
+
+   ```
+   http://localhost:5000/api/orders/:carId
+   ```
+
+7. Get orders revenue:
+
+   ```
+   http://localhost:5000/api/orders/revenue
+   ```
