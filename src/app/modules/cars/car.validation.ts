@@ -7,10 +7,7 @@ const carValidationSchema = z.object({
     .regex(/^[A-Za-z]+$/, 'Brand must be alphabetic and contain only letters')
     .transform((value) => value.charAt(0).toUpperCase() + value.slice(1)),
 
-  model: z
-    .string()
-    .nonempty('Model is required')
-    .regex(/^[A-Za-z]+$/, 'Model must be alphabetic and contain only letters'),
+  model: z.string().nonempty('Model is required'),
 
   year: z
     .number()

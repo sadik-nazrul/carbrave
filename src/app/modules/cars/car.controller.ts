@@ -26,6 +26,13 @@ const getCars = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query;
     const result = await CarServices.getCarsToDB(searchTerm as string);
+    if (result.length === 0) {
+      res.status(200).json({
+        message: 'Retriving call is successfull',
+        status: true,
+        data: `But no data have in the Database to show.`,
+      });
+    }
     res.status(200).json({
       message: 'Cars retrieved successfully',
       status: true,
@@ -41,6 +48,13 @@ const getSingleCar = async (req: Request, res: Response) => {
   try {
     const carId = req.params.carId;
     const result = await CarServices.getSingleCarToDB(carId);
+    if (result === null) {
+      res.status(200).json({
+        message: 'Retriving call is successfull',
+        status: true,
+        data: 'Something went wrong please check the ID or other things',
+      });
+    }
     res.status(200).json({
       message: 'Car retrieved successfully',
       status: true,
@@ -57,6 +71,13 @@ const updateCar = async (req: Request, res: Response) => {
     const carId = req.params.carId;
     const data = req.body;
     const result = await CarServices.updateCarInDb(carId, data);
+    if (result === null) {
+      res.status(200).json({
+        message: 'Updating call is successfull',
+        status: true,
+        data: 'Something went wrong please check the ID or other things',
+      });
+    }
     res.status(200).json({
       message: 'Car updated successfully',
       status: true,
@@ -71,7 +92,14 @@ const updateCar = async (req: Request, res: Response) => {
 const deleteCar = async (req: Request, res: Response) => {
   try {
     const carId = req.params.carId;
-    await CarServices.deleteCarToDB(carId);
+    const result = await CarServices.deleteCarToDB(carId);
+    if (result === null) {
+      res.status(200).json({
+        message: 'Deleting call is successfull',
+        status: true,
+        data: 'Something went wrong please check the ID or other things',
+      });
+    }
     res.status(200).json({
       message: 'Car deleted successfully',
       status: true,
