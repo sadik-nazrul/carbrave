@@ -76,44 +76,102 @@ src/
 
 ## Endpoints
 
-1. Create Car:
+### 1. Create a Car
 
-   ```
-   /api/cars
-   ```
+- **Endpoint:** `/api/cars`
+- **Method:** `POST`
+- **Request Body:**
 
-2. Get All cars:
+````json
+{
+  "brand": "Toyota",
+  "model": "Camry",
+  "year": 2024,
+  "price": 25000,
+  "category": "Sedan",
+  "description": "A reliable family sedan with modern features.",
+  "quantity": 50,
+  "inStock": true
+}
 
-   ```
-   /api/cars
-   ```
+### 2. Get All Cars
+
+**Endpoint:** `/api/cars`
+**Method:** `GET`
+
+**Description:**
+Retrieve a list of all cars with details like brand, model, price, category, etc.
+
+**Query Parameters:**
+You can filter cars using the `searchTerm` parameter.
+Example: `/api/cars?searchTerm=category`
+The `searchTerm` can be one of the following: `brand`, `model`, or `category`.
+
+---
+
+**Response Example:**
+
+```json
+{
+  "message": "Cars retrieved successfully",
+  "status": true,
+  "data": [
+    {
+      "_id": "648a45e5f0123c45678d9012",
+      "brand": "Toyota",
+      "model": "Camry",
+      "year": 2024,
+      "price": 25000,
+      "category": "Sedan",
+      "description": "A reliable family sedan with modern features.",
+      "quantity": 50,
+      "inStock": true,
+      "createdAt": "2024-11-19T10:23:45.123Z",
+      "updatedAt": "2024-11-19T10:23:45.123Z"
+    }
+    // ... rest data
+  ]
+}
+
 
 3. Get Single car:
 
-   ```
-   /api/cars/:carId
-   ```
+````
+
+/api/cars/:carId
+
+```
 
 4. Update car:
 
-   ```
-   /api/cars/:carId
-   ```
+```
+
+/api/cars/:carId
+
+```
 
 5. Delete car:
 
-   ```
-   /api/cars/:carId
-   ```
+```
+
+/api/cars/:carId
+
+```
 
 6. Order car:
 
-   ```
-   /api/orders/:carId
-   ```
+```
+
+/api/orders/:carId
+
+```
 
 7. Get orders revenue:
 
-   ```
-   /api/orders/revenue
-   ```
+```
+
+/api/orders/revenue
+
+```
+
+```
