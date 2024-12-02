@@ -76,42 +76,14 @@ src/
 
 ## Endpoints
 
-### 1. Create a Car
+### **2. Get All Cars**
 
-- **Endpoint:** `/api/cars`
-- **Method:** `POST`
-- **Request Body:**
+- **Endpoint:** **`/api/cars`**
+- **Method:** `GET`
+- **Response:** A list of all cars with details like brand, model, price, category, etc.
+- Query: A list of all cars from the same category, you’ll take this as `/api/cars?searchTerm=category` searchTerm can be `brand`, `model`, `category`
 
-````json
-{
-  "brand": "Toyota",
-  "model": "Camry",
-  "year": 2024,
-  "price": 25000,
-  "category": "Sedan",
-  "description": "A reliable family sedan with modern features.",
-  "quantity": 50,
-  "inStock": true
-}
-
-### 2. Get All Cars
-
-**Endpoint:** `/api/cars`
-**Method:** `GET`
-
-**Description:**
-Retrieve a list of all cars with details like brand, model, price, category, etc.
-
-**Query Parameters:**
-You can filter cars using the `searchTerm` parameter.
-Example: `/api/cars?searchTerm=category`
-The `searchTerm` can be one of the following: `brand`, `model`, or `category`.
-
----
-
-**Response Example:**
-
-```json
+```jsx
 {
   "message": "Cars retrieved successfully",
   "status": true,
@@ -128,50 +100,151 @@ The `searchTerm` can be one of the following: `brand`, `model`, or `category`.
       "inStock": true,
       "createdAt": "2024-11-19T10:23:45.123Z",
       "updatedAt": "2024-11-19T10:23:45.123Z"
-    }
+    },
     // ... rest data
   ]
 }
-
-
-3. Get Single car:
-
-````
-
-/api/cars/:carId
-
 ```
 
-4. Update car:
+---
 
+### **3. Get a Specific Car**
+
+- **Endpoint:** **`/api/cars/:carId`**
+- **Method:** `GET`
+- **Response:** The details of a specific car by ID.
+
+```jsx
+{
+  "message": "Car retrieved successfully",
+  "status": true,
+  "data": {
+    "_id": "648a45e5f0123c45678d9012",
+    "brand": "Toyota",
+    "model": "Camry",
+    "year": 2024,
+    "price": 25000,
+    "category": "Sedan",
+    "description": "A reliable family sedan with modern features.",
+    "quantity": 50,
+    "inStock": true,
+    "createdAt": "2024-11-19T10:23:45.123Z",
+    "updatedAt": "2024-11-19T10:23:45.123Z"
+  }
+}
 ```
 
-/api/cars/:carId
+---
 
+### **4. Update a Car**
+
+- **Endpoint:** **`/api/cars/:carId`**
+- **Method:** `PUT`
+- **Request Body:** (Car details to update)
+
+```json
+{
+  "price": 27000,
+  "quantity": 30
+}
 ```
 
-5. Delete car:
+- **Response:** Success message and updated car details.
 
+```jsx
+{
+  "message": "Car updated successfully",
+  "status": true,
+  "data": {
+    "_id": "648a45e5f0123c45678d9012",
+    "brand": "Toyota",
+    "model": "Camry",
+    "year": 2024,
+    "price": 27000,  // Price updated
+    "category": "Sedan",
+    "description": "A reliable family sedan with modern features.",
+    "quantity": 30,  // Quantity updated
+    "inStock": true,
+    "createdAt": "2024-11-19T10:23:45.123Z",
+    "updatedAt": "2024-11-19T11:00:00.000Z"  // Updated timestamp
+  }
+}
 ```
 
-/api/cars/:carId
+---
 
+### **5. Delete a Car**
+
+- **Endpoint:** **`/api/cars/:carId`**
+- **Method:** `DELETE`
+- **Response:** Success message confirming the car has been deleted.
+
+```jsx
+{
+  "message": "Car deleted successfully",
+  "status": true,
+  "data": {}
+}
 ```
 
-6. Order car:
+---
 
+### **6. Order a Car**
+
+- **Endpoint:** **`/api/orders`**
+- **Method:** `POST`
+- **Inventory Management Logic:**
+  - When an order is placed, reduce the **quantity** in the car model.
+  - If the inventory quantity goes to zero, set **inStock** to `false`.
+  - Handle **insufficient stock** cases by returning an appropriate error message.
+- **Request Body:**
+
+```json
+{
+  "email": "customer@example.com",
+  "car": "648a45e5f0123c45678d9012",
+  "quantity": 1,
+  "totalPrice": 27000
+}
 ```
 
-/api/orders/:carId
+- **Response:** Success message confirming the order.
 
+```jsx
+{
+  "message": "Order created successfully",
+  "status": true,
+  "data": {
+    "_id": "648b45f5e1234b56789a6789",
+    "email": "customer@example.com",
+    "car": "648a45e5f0123c45678d9012",
+    "quantity": 1,
+    "totalPrice": 27000,
+    "createdAt": "2024-11-19T12:00:00.000Z",
+    "updatedAt": "2024-11-19T12:00:00.000Z"
+  }
+}
 ```
 
-7. Get orders revenue:
+---
 
+### **7. Calculate Revenue from Orders (Aggregation)**
+
+- **Endpoint:** **`/api/orders/revenue`**
+- **Method:** `GET`
+- **Aggregation Suggestion:**
+  - Use MongoDB aggregation pipeline to calculate the total revenue from `all orders`.
+  - Calculate the total price by multiplying the price of each car by the quantity ordered.
+- **Response:** The total revenue from all orders.
+
+```jsx
+{
+  "message": "Revenue calculated successfully",
+  "status": true,
+  "data": {
+    "totalRevenue": 810000  // Total revenue calculated from all orders
+  }
+}
 ```
 
-/api/orders/revenue
-
-```
-
-```
+---
