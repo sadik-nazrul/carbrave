@@ -76,6 +76,49 @@ src/
 
 ## Endpoints
 
+### **1. Create a Car**
+
+- **Endpoint:** **`/api/cars`**
+- **Method:** `POST`
+- **Request Body:**
+
+```json
+{
+  "brand": "Toyota",
+  "model": "Camry",
+  "year": 2024,
+  "price": 25000,
+  "category": "Sedan",
+  "description": "A reliable family sedan with modern features.",
+  "quantity": 50,
+  "inStock": true
+}
+```
+
+- **Response:** Success message and created car details.
+
+```jsx
+{
+  "message": "Car created successfully",
+  "success": true,
+  "data": {
+    "_id": "648a45e5f0123c45678d9012",
+    "brand": "Toyota",
+    "model": "Camry",
+    "year": 2024,
+    "price": 25000,
+    "category": "Sedan",
+    "description": "A reliable family sedan with modern features.",
+    "quantity": 50,
+    "inStock": true,
+    "createdAt": "2024-11-19T10:23:45.123Z",
+    "updatedAt": "2024-11-19T10:23:45.123Z"
+  }
+}
+```
+
+---
+
 ### **2. Get All Cars**
 
 - **Endpoint:** **`/api/cars`**
