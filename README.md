@@ -55,7 +55,7 @@ src/
    ```
    npm install
    or
-   yarn add
+   yarn install
 
    ```
 
