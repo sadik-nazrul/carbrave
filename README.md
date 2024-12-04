@@ -37,7 +37,7 @@ src/
 
 ## Prerequisites
 
-- **Node.js** >= 18.x
+- **Node.js** >= v18.20.0
 - **MongoDB** (local or cloud)
 
 ## Installation
