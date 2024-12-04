@@ -62,7 +62,7 @@ src/
 3. Create a .env file in the root directory and add the following:
 
    ```
-   PORT=5000 /*(your prepaired port)*/
+   PORT=5000
    DATABASE_URL=mongodb://localhost:27017/carbrave
    ```
 
