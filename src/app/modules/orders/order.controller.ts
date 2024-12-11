@@ -9,7 +9,7 @@ const createOrder = async (req: Request, res: Response) => {
     res.status(200).json({
       message: 'Order created successfully',
       status: true,
-      date: result,
+      data: result,
     });
   } catch (err) {
     handleError(err, res);
@@ -30,7 +30,7 @@ const getTotalRevenue = async (req: Request, res: Response) => {
     res.status(200).json({
       message: 'Revenue calculated successfully',
       status: true,
-      date: totalRevenue,
+      data: totalRevenue,
     });
   } catch (err) {
     handleError(err, res);
